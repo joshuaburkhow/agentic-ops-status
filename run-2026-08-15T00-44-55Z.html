@@ -5,11 +5,15 @@
 /* Always light, high contrast, large type — the Principal reads this page with low
    vision. No dark mode: the page paints its own white ground and near-black ink
    whatever the device is set to. Every text colour here is at least 7:1 against its
-   background (WCAG AAA), status pills are bold on saturated-but-light fills, and
+   background (WCAG AAA). Status pills are SOLID chips — white or black bold text on a
+   saturated fill (deep green, slate, bright amber, deep red) — a visibly different
+   family from the lane-type badges, which are light tints of the Practable palette
+   (blue, teal, purple), so status and type can never be mistaken for one another; and
    borders are 1px solid mid-grey so rows and columns read as lines, not hints. */
 :root{color-scheme:light;--s2:#fff;--s1:#eeeeee;--s0:#f7f7f7;--bd:#8c8c8c;--tp:#000;
---ts:#1a1a1a;--tm:#333;--ok-b:#c9efd2;--ok-t:#063d17;--w-b:#ffe4a8;--w-t:#5a3300;
---d-b:#ffcfcf;--d-t:#7a0000;
+--ts:#1a1a1a;--tm:#333;
+--ok:#0b6b34;--ok-t:#064a22;--nd:#4a5568;--nd-t:#2f3846;--nc:#ffb020;--nc-t:#6b4300;
+--fail:#a51d17;--fail-t:#8a1610;
 --p-b:#cfe0ff;--p-t:#062a70;--a-b:#c4ecf2;--a-t:#03434f;--pr-b:#e2d6ff;--pr-t:#3a0f8a;
 --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
 --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
@@ -36,19 +40,19 @@ tr.lane .ln{padding-left:40px;color:#000;font-weight:500}tr.lane .ln.hc{padding-
 .agent,.machine,.t{font-family:var(--mono);font-size:17px;color:var(--ts);font-weight:500}
 .chev{display:inline-block;margin-right:8px;color:#000;font-weight:700;transition:transform .12s}
 tr[data-open="1"] .chev{transform:rotate(90deg)}
-.pill{display:inline-flex;align-items:center;padding:4px 12px;border-radius:20px;font-size:16px;font-weight:700;
-border:1.5px solid currentColor}
-.pill.ok{background:var(--ok-b);color:var(--ok-t)}
-.pill.nd{background:#e6e6e6;color:#2b2b2b}
-.pill.nc{background:var(--w-b);color:var(--w-t)}.pill.fail{background:var(--d-b);color:var(--d-t)}
+.pill{display:inline-flex;align-items:center;padding:4px 13px;border-radius:20px;font-size:16px;font-weight:700;
+border:1.5px solid #000;color:#fff;letter-spacing:.01em}
+.pill.ok{background:var(--ok)}
+.pill.nd{background:var(--nd)}
+.pill.nc{background:var(--nc);color:#000}.pill.fail{background:var(--fail)}
 .cat{display:inline-block;padding:3px 11px;border-radius:12px;font-size:15px;font-weight:700;margin-right:5px;
 border:1.5px solid currentColor}
 .cat.p{background:var(--p-b);color:var(--p-t)}.cat.a{background:var(--a-b);color:var(--a-t)}
 .cat.pr{background:var(--pr-b);color:var(--pr-t)}
 tr.item{background:var(--s0)}tr.item td{padding:9px 14px}
 tr.item .work{padding-left:64px;color:var(--ts);font-weight:500}
-tr.item .st-ok{color:var(--ok-t)}tr.item .st-nd{color:#2b2b2b}
-tr.item .st-nc{color:var(--w-t)}tr.item .st-fail{color:var(--d-t)}
+tr.item .st-ok{color:var(--ok-t)}tr.item .st-nd{color:var(--nd-t)}
+tr.item .st-nc{color:var(--nc-t)}tr.item .st-fail{color:var(--fail-t)}
 tr.item .st-ok,tr.item .st-nd,tr.item .st-nc,tr.item .st-fail{font-size:16px;font-weight:700}
 tr.item .t{font-size:16px}
 tr.item .note{color:var(--tm);font-size:16px}
@@ -90,10 +94,9 @@ background:#fff;border:1.5px solid #000;border-radius:8px;padding:6px 10px;max-w
 <tr class="grp" data-grp="G2" data-open="0"><td class="gn"><span class="chev">›</span>Slack <span class="cnt">2 lanes · 1 not completed / 1 failed</span><span class="info" data-tip="Reads work Slack on the Alteryx laptop. One lane sorts new messages, the other works through the saved &#x27;Later&#x27; list. Things that need action become tasks; nothing is replied to or deleted." tabindex="0">i</span></td><td><span class="cat a">Alteryx</span></td><td class="agent">project_coordinator</td><td class="machine">AMB-2359YN</td><td><span class="pill fail">Failed</span></td><td class="t">20:22:54</td><td class="t">20:22:54</td></tr>
 <tr class="lane" data-parent-grp="G2" hidden data-fn="slack triage — alteryx" data-ft="alteryx" data-fa="project_coordinator" data-fm="amb-2359yn" data-fs="fail" data-f1="20:22:54" data-f2="20:22:54"><td class="ln">Slack triage — Alteryx <span class="cnt">33 seen, 0 changed</span><span class="info" data-tip="Reads new messages in Alteryx Slack and flags the ones that need a reply or some work. It never replies on its own." tabindex="0">i</span></td><td><span class="cat a">Alteryx</span></td><td class="agent">project_coordinator</td><td class="machine">AMB-2359YN</td><td><span class="pill fail">Failed</span></td><td class="t">20:22:54</td><td class="t">20:22:54</td></tr>
 <tr class="lane" data-parent-grp="G2" hidden data-fn="slack later queue — alteryx" data-ft="alteryx" data-fa="project_coordinator" data-fm="amb-2359yn" data-fs="nc" data-f1="20:22:54" data-f2="20:22:54"><td class="ln">Slack Later queue — Alteryx <span class="cnt">27 seen, 0 changed</span><span class="info" data-tip="Works through messages saved for &#x27;Later&#x27; in Alteryx Slack and turns the ones that need action into tasks." tabindex="0">i</span></td><td><span class="cat a">Alteryx</span></td><td class="agent">project_coordinator</td><td class="machine">AMB-2359YN</td><td><span class="pill nc">Not Completed</span></td><td class="t">20:22:54</td><td class="t">20:22:54</td></tr>
-<tr class="grp" data-grp="G3" data-open="0"><td class="gn"><span class="chev">›</span>Social <span class="cnt">3 lanes · 3 not completed</span><span class="info" data-tip="Checks the social accounts — LinkedIn, Instagram, YouTube, X, and more, for both Joshua and Practable. It looks for new messages and saved posts and turns the important ones into tasks. It never posts or replies on its own." tabindex="0">i</span></td><td><span class="cat p">Personal</span><span class="cat pr">Practable</span></td><td class="agent">—</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill nc">Not Completed</span></td><td class="t">20:41:11</td><td class="t">20:41:11</td></tr>
+<tr class="grp" data-grp="G3" data-open="0"><td class="gn"><span class="chev">›</span>Social <span class="cnt">2 lanes · 2 not completed</span><span class="info" data-tip="Checks the social accounts — LinkedIn, Instagram, YouTube, X, and more, for both Joshua and Practable. It looks for new messages and saved posts and turns the important ones into tasks. It never posts or replies on its own." tabindex="0">i</span></td><td><span class="cat p">Personal</span><span class="cat pr">Practable</span></td><td class="agent">—</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill nc">Not Completed</span></td><td class="t">20:41:11</td><td class="t">20:41:11</td></tr>
 <tr class="lane" data-parent-grp="G3" hidden data-fn="social messages — personal" data-ft="personal practable" data-fa="project_coordinator" data-fm="joshua’s macbook pro" data-fs="nc" data-f1="20:41:11" data-f2="20:41:11"><td class="ln">Social messages — personal<span class="info" data-tip="Opens each social account and checks its inbox, message requests, and mentions. New things worth acting on become tasks. It never replies or posts on its own." tabindex="0">i</span></td><td><span class="cat p">Personal</span><span class="cat pr">Practable</span></td><td class="agent">project_coordinator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill nc">Not Completed</span></td><td class="t">20:41:11</td><td class="t">20:41:11</td></tr>
 <tr class="lane" data-parent-grp="G3" hidden data-fn="social saved items" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nc" data-f1="20:41:11" data-f2="20:41:11"><td class="ln">Social saved items<span class="info" data-tip="Goes through posts saved on each social platform and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td><span class="cat p">Personal</span><span class="cat pr">Practable</span></td><td class="agent">marketing_operator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill nc">Not Completed</span></td><td class="t">20:41:11</td><td class="t">20:41:11</td></tr>
-<tr class="lane" data-parent-grp="G3" hidden data-fn="social account discovery" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nc" data-f1="20:41:11" data-f2="20:41:11"><td class="ln">Social account discovery<span class="info" data-tip="Checks which social accounts the browser can currently reach, so the org knows which platforms it can actually cover this hour." tabindex="0">i</span></td><td><span class="cat p">Personal</span><span class="cat pr">Practable</span></td><td class="agent">marketing_operator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill nc">Not Completed</span></td><td class="t">20:41:11</td><td class="t">20:41:11</td></tr>
 <tr class="grp" data-grp="G4" data-open="0"><td class="gn"><span class="chev">›</span>Finance <span class="cnt">2 lanes · 1 successful / 1 not completed</span><span class="info" data-tip="Keeps an eye on money things: card charges that promised a statement credit, and packages from online orders. It only reads and reports — it never moves money." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">—</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill nc">Not Completed</span></td><td class="t">20:07:48</td><td class="t">20:41:11</td></tr>
 <tr class="lane" data-parent-grp="G4" hidden data-fn="simplifi statement-credit verification" data-ft="personal" data-fa="accounting_operator" data-fm="joshua’s macbook pro" data-fs="nc" data-f1="20:41:11" data-f2="20:41:11"><td class="ln">Simplifi statement-credit verification<span class="info" data-tip="Checks card charges in Simplifi against promised statement credits, like Amex offers, and confirms each credit actually arrived. It only reads — it never moves money." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">accounting_operator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill nc">Not Completed</span></td><td class="t">20:41:11</td><td class="t">20:41:11</td></tr>
 <tr class="lane" data-parent-grp="G4" hidden data-fn="order tracking — personal" data-ft="personal" data-fa="runner" data-fm="joshua’s macbook pro" data-fs="ok" data-f1="20:07:48" data-f2="20:08:56"><td class="ln">Order tracking — personal<span class="info" data-tip="Watches order and shipping emails and keeps track of where each package is." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">runner</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td><td class="t">20:07:48</td><td class="t">20:08:56</td></tr>
@@ -112,15 +115,17 @@ background:#fff;border:1.5px solid #000;border-radius:8px;padding:6px 10px;max-w
 <tr class="lane" data-parent-grp="G7" hidden data-fn="ai work reconciliation" data-ft="personal" data-fa="runner" data-fm="joshua’s macbook pro" data-fs="ok" data-f1="20:07:41" data-f2="20:07:42"><td class="ln">AI work reconciliation<span class="info" data-tip="Compares what the AI said it did with what actually happened in the task list, and flags anything stalled." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">runner</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td><td class="t">20:07:41</td><td class="t">20:07:42</td></tr>
 <tr class="lane" data-parent-grp="G7" hidden data-fn="cowork queue" data-ft="personal" data-fa="runner" data-fm="joshua’s macbook pro" data-fs="ok" data-f1="20:07:40" data-f2="20:07:41"><td class="ln">Cowork queue<span class="info" data-tip="Checks the queue of interactive AI missions and starts the ones that are due." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">runner</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td><td class="t">20:07:40</td><td class="t">20:07:41</td></tr>
 <tr class="lane" data-parent-grp="G7" hidden data-fn="git sync" data-ft="personal" data-fa="runner" data-fm="joshua’s macbook pro" data-fs="ok" data-f1="20:07:45" data-f2="20:07:47"><td class="ln">Git sync<span class="info" data-tip="Saves all of the day&#x27;s changes into the Git history and syncs with GitHub, so no work is ever lost." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">runner</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td><td class="t">20:07:45</td><td class="t">20:07:47</td></tr>
+<tr class="grp" data-grp="G8" data-open="0"><td class="gn"><span class="chev">›</span>Other lanes <span class="cnt">1 lane · 1 not completed</span><span class="info" data-tip="Lanes that have not been filed into a named group yet. They run and report exactly like every other lane." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">marketing_operator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill nc">Not Completed</span></td><td class="t">20:41:11</td><td class="t">20:41:11</td></tr>
+<tr class="lane" data-parent-grp="G8" hidden data-fn="social account discovery" data-ft="personal" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nc" data-f1="20:41:11" data-f2="20:41:11"><td class="ln">Social account discovery<span class="info" data-tip="One of the org&#x27;s scheduled lanes. A plain-language note for it has not been written yet." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">marketing_operator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill nc">Not Completed</span></td><td class="t">20:41:11</td><td class="t">20:41:11</td></tr>
 </tbody></table></div>
 <div class="legend">
 <span><span class="chev">›</span> Click a group for its lanes, a lane for its work items</span>
 <span>Filter under any header — matching rows open up; clear the filters to fold the table back</span>
 <span><span class="info" style="margin-left:0">i</span> Hover for what a lane does</span>
-<span><span class="dot" style="background:var(--ok-t)"></span>Successful</span>
-<span><span class="dot" style="background:var(--tm)"></span>Not due</span>
-<span><span class="dot" style="background:var(--w-t)"></span>Not Completed</span>
-<span><span class="dot" style="background:var(--d-t)"></span>Failed</span>
+<span><span class="dot" style="background:var(--ok)"></span>Successful</span>
+<span><span class="dot" style="background:var(--nd)"></span>Not due</span>
+<span><span class="dot" style="background:var(--nc)"></span>Not Completed</span>
+<span><span class="dot" style="background:var(--fail)"></span>Failed</span>
 <span>Agent <b>runner</b> = deterministic lane, no agent involved</span>
 <span>All times Eastern (ET)</span></div>
 </div><div id="tip" role="tooltip"></div><script>
