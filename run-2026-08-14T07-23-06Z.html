@@ -9,12 +9,14 @@
    own ink #14294A, blue #1F7AEF, violet #6C4BF5 and slate #53627A — as light tints with
    dark text and a matching outline, the style the Principal likes on the lane-type
    badges. Status: blue = Successful, slate = Not due, violet = Not Completed, and
-   Failed is solid ink with white text so the one row that needs eyes stands out; and
+   Failed is a solid deep raspberry #A3154C with white text — the closest to red that
+   still belongs to this palette (violet's warm neighbour) — so the one row that needs
+   eyes stands out; and
    borders are 1px solid mid-grey so rows and columns read as lines, not hints. */
 :root{color-scheme:light;--s2:#fff;--s1:#eeeeee;--s0:#f7f7f7;--bd:#8c8c8c;--tp:#000;
 --ts:#1a1a1a;--tm:#333;
 --ok-b:#d9e9ff;--ok-t:#083e93;--nd-b:#e3e7ee;--nd-t:#3b4658;--nc-b:#e7e0ff;--nc-t:#4520b8;
---fail-b:#14294a;--fail-t:#14294a;
+--fail-b:#a3154c;--fail-t:#8e1048;
 --p-b:#cfe0ff;--p-t:#062a70;--a-b:#c4ecf2;--a-t:#03434f;--pr-b:#e2d6ff;--pr-t:#3a0f8a;
 --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
 --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
@@ -145,7 +147,7 @@ background:#fff;border:1.5px solid #000;border-radius:8px;padding:6px 10px;max-w
 <span><span class="dot" style="background:#1f7aef"></span>Successful</span>
 <span><span class="dot" style="background:#53627a"></span>Not due</span>
 <span><span class="dot" style="background:#6c4bf5"></span>Not Completed</span>
-<span><span class="dot" style="background:#14294a"></span>Failed</span>
+<span><span class="dot" style="background:#a3154c"></span>Failed</span>
 <span>Agent <b>runner</b> = deterministic lane, no agent involved</span>
 <span>All times Eastern (ET)</span></div>
 </div><div id="tip" role="tooltip"></div><script>
