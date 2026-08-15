@@ -4,11 +4,15 @@
 /* Always light, high contrast, large type — the Principal reads this page with low
    vision. No dark mode: the page paints its own white ground and near-black ink
    whatever the device is set to. Every text colour here is at least 7:1 against its
-   background (WCAG AAA), status pills are bold on saturated-but-light fills, and
+   background (WCAG AAA). Status pills are SOLID chips — white or black bold text on a
+   saturated fill (deep green, slate, bright amber, deep red) — a visibly different
+   family from the lane-type badges, which are light tints of the Practable palette
+   (blue, teal, purple), so status and type can never be mistaken for one another; and
    borders are 1px solid mid-grey so rows and columns read as lines, not hints. */
 :root{color-scheme:light;--s2:#fff;--s1:#eeeeee;--s0:#f7f7f7;--bd:#8c8c8c;--tp:#000;
---ts:#1a1a1a;--tm:#333;--ok-b:#c9efd2;--ok-t:#063d17;--w-b:#ffe4a8;--w-t:#5a3300;
---d-b:#ffcfcf;--d-t:#7a0000;
+--ts:#1a1a1a;--tm:#333;
+--ok:#0b6b34;--ok-t:#064a22;--nd:#4a5568;--nd-t:#2f3846;--nc:#ffb020;--nc-t:#6b4300;
+--fail:#a51d17;--fail-t:#8a1610;
 --p-b:#cfe0ff;--p-t:#062a70;--a-b:#c4ecf2;--a-t:#03434f;--pr-b:#e2d6ff;--pr-t:#3a0f8a;
 --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
 --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
@@ -35,19 +39,19 @@ tr.lane .ln{padding-left:40px;color:#000;font-weight:500}tr.lane .ln.hc{padding-
 .agent,.machine,.t{font-family:var(--mono);font-size:17px;color:var(--ts);font-weight:500}
 .chev{display:inline-block;margin-right:8px;color:#000;font-weight:700;transition:transform .12s}
 tr[data-open="1"] .chev{transform:rotate(90deg)}
-.pill{display:inline-flex;align-items:center;padding:4px 12px;border-radius:20px;font-size:16px;font-weight:700;
-border:1.5px solid currentColor}
-.pill.ok{background:var(--ok-b);color:var(--ok-t)}
-.pill.nd{background:#e6e6e6;color:#2b2b2b}
-.pill.nc{background:var(--w-b);color:var(--w-t)}.pill.fail{background:var(--d-b);color:var(--d-t)}
+.pill{display:inline-flex;align-items:center;padding:4px 13px;border-radius:20px;font-size:16px;font-weight:700;
+border:1.5px solid #000;color:#fff;letter-spacing:.01em}
+.pill.ok{background:var(--ok)}
+.pill.nd{background:var(--nd)}
+.pill.nc{background:var(--nc);color:#000}.pill.fail{background:var(--fail)}
 .cat{display:inline-block;padding:3px 11px;border-radius:12px;font-size:15px;font-weight:700;margin-right:5px;
 border:1.5px solid currentColor}
 .cat.p{background:var(--p-b);color:var(--p-t)}.cat.a{background:var(--a-b);color:var(--a-t)}
 .cat.pr{background:var(--pr-b);color:var(--pr-t)}
 tr.item{background:var(--s0)}tr.item td{padding:9px 14px}
 tr.item .work{padding-left:64px;color:var(--ts);font-weight:500}
-tr.item .st-ok{color:var(--ok-t)}tr.item .st-nd{color:#2b2b2b}
-tr.item .st-nc{color:var(--w-t)}tr.item .st-fail{color:var(--d-t)}
+tr.item .st-ok{color:var(--ok-t)}tr.item .st-nd{color:var(--nd-t)}
+tr.item .st-nc{color:var(--nc-t)}tr.item .st-fail{color:var(--fail-t)}
 tr.item .st-ok,tr.item .st-nd,tr.item .st-nc,tr.item .st-fail{font-size:16px;font-weight:700}
 tr.item .t{font-size:16px}
 tr.item .note{color:var(--tm);font-size:16px}
@@ -77,10 +81,11 @@ li a:hover{background:var(--s1)}
 li.empty{padding:14px;color:var(--tm)}
 .rt{font-family:var(--mono);font-size:19px;font-weight:600;flex:1}
 .rs{font-size:17px;font-weight:700;padding:3px 10px;border-radius:12px;border:1.5px solid currentColor;margin-left:6px}
-.rs.ok{color:var(--ok-t);background:var(--ok-b)}.rs.nd{color:#2b2b2b;background:#e6e6e6}
-.rs.nc{color:var(--w-t);background:var(--w-b)}.rs.fail{color:var(--d-t);background:var(--d-b)}
+.rs{color:#fff;border-color:#000}
+.rs.ok{background:var(--ok)}.rs.nd{background:var(--nd)}
+.rs.nc{background:var(--nc);color:#000}.rs.fail{background:var(--fail)}
 .d{width:14px;height:14px;border-radius:50%;flex:none;border:1.5px solid #000}
-.d.ok{background:var(--ok-t)}.d.nd{background:#8c8c8c}.d.nc{background:#d18a00}.d.fail{background:var(--d-t)}
+.d.ok{background:var(--ok)}.d.nd{background:var(--nd)}.d.nc{background:var(--nc)}.d.fail{background:var(--fail)}
 </style></head><body><div class="wrap">
 <div class="head"><h1>Agentic Ops — Local runs</h1></div>
 <p class="sub">Hourly local run status, newest first. Sanitized — status and timing only, no personal detail.</p>
