@@ -5,11 +5,15 @@
 /* Always light, high contrast, large type — the Principal reads this page with low
    vision. No dark mode: the page paints its own white ground and near-black ink
    whatever the device is set to. Every text colour here is at least 7:1 against its
-   background (WCAG AAA), status pills are bold on saturated-but-light fills, and
+   background (WCAG AAA). Status pills are SOLID chips — white or black bold text on a
+   saturated fill (deep green, slate, bright amber, deep red) — a visibly different
+   family from the lane-type badges, which are light tints of the Practable palette
+   (blue, teal, purple), so status and type can never be mistaken for one another; and
    borders are 1px solid mid-grey so rows and columns read as lines, not hints. */
 :root{color-scheme:light;--s2:#fff;--s1:#eeeeee;--s0:#f7f7f7;--bd:#8c8c8c;--tp:#000;
---ts:#1a1a1a;--tm:#333;--ok-b:#c9efd2;--ok-t:#063d17;--w-b:#ffe4a8;--w-t:#5a3300;
---d-b:#ffcfcf;--d-t:#7a0000;
+--ts:#1a1a1a;--tm:#333;
+--ok:#0b6b34;--ok-t:#064a22;--nd:#4a5568;--nd-t:#2f3846;--nc:#ffb020;--nc-t:#6b4300;
+--fail:#a51d17;--fail-t:#8a1610;
 --p-b:#cfe0ff;--p-t:#062a70;--a-b:#c4ecf2;--a-t:#03434f;--pr-b:#e2d6ff;--pr-t:#3a0f8a;
 --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
 --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
@@ -36,19 +40,19 @@ tr.lane .ln{padding-left:40px;color:#000;font-weight:500}tr.lane .ln.hc{padding-
 .agent,.machine,.t{font-family:var(--mono);font-size:17px;color:var(--ts);font-weight:500}
 .chev{display:inline-block;margin-right:8px;color:#000;font-weight:700;transition:transform .12s}
 tr[data-open="1"] .chev{transform:rotate(90deg)}
-.pill{display:inline-flex;align-items:center;padding:4px 12px;border-radius:20px;font-size:16px;font-weight:700;
-border:1.5px solid currentColor}
-.pill.ok{background:var(--ok-b);color:var(--ok-t)}
-.pill.nd{background:#e6e6e6;color:#2b2b2b}
-.pill.nc{background:var(--w-b);color:var(--w-t)}.pill.fail{background:var(--d-b);color:var(--d-t)}
+.pill{display:inline-flex;align-items:center;padding:4px 13px;border-radius:20px;font-size:16px;font-weight:700;
+border:1.5px solid #000;color:#fff;letter-spacing:.01em}
+.pill.ok{background:var(--ok)}
+.pill.nd{background:var(--nd)}
+.pill.nc{background:var(--nc);color:#000}.pill.fail{background:var(--fail)}
 .cat{display:inline-block;padding:3px 11px;border-radius:12px;font-size:15px;font-weight:700;margin-right:5px;
 border:1.5px solid currentColor}
 .cat.p{background:var(--p-b);color:var(--p-t)}.cat.a{background:var(--a-b);color:var(--a-t)}
 .cat.pr{background:var(--pr-b);color:var(--pr-t)}
 tr.item{background:var(--s0)}tr.item td{padding:9px 14px}
 tr.item .work{padding-left:64px;color:var(--ts);font-weight:500}
-tr.item .st-ok{color:var(--ok-t)}tr.item .st-nd{color:#2b2b2b}
-tr.item .st-nc{color:var(--w-t)}tr.item .st-fail{color:var(--d-t)}
+tr.item .st-ok{color:var(--ok-t)}tr.item .st-nd{color:var(--nd-t)}
+tr.item .st-nc{color:var(--nc-t)}tr.item .st-fail{color:var(--fail-t)}
 tr.item .st-ok,tr.item .st-nd,tr.item .st-nc,tr.item .st-fail{font-size:16px;font-weight:700}
 tr.item .t{font-size:16px}
 tr.item .note{color:var(--tm);font-size:16px}
@@ -105,10 +109,10 @@ background:#fff;border:1.5px solid #000;border-radius:8px;padding:6px 10px;max-w
 <span><span class="chev">›</span> Click a group for its lanes, a lane for its work items</span>
 <span>Filter under any header — matching rows open up; clear the filters to fold the table back</span>
 <span><span class="info" style="margin-left:0">i</span> Hover for what a lane does</span>
-<span><span class="dot" style="background:var(--ok-t)"></span>Successful</span>
-<span><span class="dot" style="background:var(--tm)"></span>Not due</span>
-<span><span class="dot" style="background:var(--w-t)"></span>Not Completed</span>
-<span><span class="dot" style="background:var(--d-t)"></span>Failed</span>
+<span><span class="dot" style="background:var(--ok)"></span>Successful</span>
+<span><span class="dot" style="background:var(--nd)"></span>Not due</span>
+<span><span class="dot" style="background:var(--nc)"></span>Not Completed</span>
+<span><span class="dot" style="background:var(--fail)"></span>Failed</span>
 <span>Agent <b>runner</b> = deterministic lane, no agent involved</span>
 <span>All times Eastern (ET)</span></div>
 </div><div id="tip" role="tooltip"></div><script>
