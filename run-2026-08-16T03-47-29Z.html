@@ -56,9 +56,7 @@ border:1.5px solid currentColor}
 .cat.pr{background:var(--pr-b);color:var(--pr-t)}
 tr.item{background:var(--s0)}tr.item td{padding:9px 14px}
 tr.item .work{padding-left:64px;color:var(--ts);font-weight:500}
-tr.item .st-ok{color:var(--ok-t)}tr.item .st-nd{color:var(--nd-t)}
-tr.item .st-nc{color:var(--nc-t)}tr.item .st-fail{color:var(--fail-t)}
-tr.item .st-ok,tr.item .st-nd,tr.item .st-nc,tr.item .st-fail{font-size:16px;font-weight:700}
+tr.item .pill{padding:2px 11px;font-size:15px}
 tr.item .t{font-size:16px}
 tr.item .note{color:var(--tm);font-size:16px}
 .info{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
@@ -78,6 +76,38 @@ background:#fff;border:1.5px solid #000;border-radius:8px;padding:6px 10px;max-w
 .dot{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:6px;border:1.5px solid #000}
 .back{display:inline-block;margin-bottom:14px;font-size:18px;color:#0645ad;text-decoration:underline;font-weight:600}
 .back:hover{color:#000}
+/* Receipts — what a lane actually did, one line per write. A small chip on the lane
+   row opens a panel from the right; the panel links to a full page of the same lines. */
+.rcpt{display:inline-block;margin-left:10px;padding:2px 10px;border-radius:12px;font-size:14px;
+font-weight:700;color:#3b4658;background:#e3e7ee;border:1.5px solid currentColor;cursor:pointer;
+font-family:var(--sans);line-height:1.4;vertical-align:1px}
+.rcpt:hover,.rcpt:focus{background:#3b4658;color:#fff;outline:none}
+#pnl-bg{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:20;display:none}
+#pnl{position:fixed;top:0;right:0;bottom:0;width:min(640px,94vw);background:#fff;z-index:21;
+border-left:2px solid #000;box-shadow:-10px 0 30px rgba(0,0,0,.25);display:none;flex-direction:column;
+font-size:18px;color:#000}
+#pnl.open,#pnl-bg.open{display:flex}
+#pnl-bg.open{display:block}
+.pnl-h{padding:18px 22px 14px;border-bottom:2px solid #000;display:flex;align-items:flex-start;gap:12px}
+.pnl-h h2{margin:0;font-size:24px;font-weight:700;flex:1;white-space:normal;line-height:1.25}
+.pnl-x{border:2px solid #000;background:#fff;color:#000;font-size:20px;font-weight:700;width:38px;height:38px;
+border-radius:50%;cursor:pointer;line-height:1;flex:none}
+.pnl-x:hover{background:#000;color:#fff}
+.pnl-m{padding:12px 22px;border-bottom:1px solid var(--bd);display:flex;flex-wrap:wrap;gap:10px 16px;
+align-items:center;font-size:16px;color:var(--ts);font-weight:500}
+.pnl-m .t{font-size:16px}
+.pnl-open{margin-left:auto;font-weight:700;color:#0645ad;text-decoration:underline;font-size:16px}
+.pnl-b{padding:10px 22px 24px;overflow:auto;flex:1}
+.rl-list{list-style:none;margin:0;padding:0}
+.rl{display:grid;grid-template-columns:96px 1fr;gap:4px 14px;padding:12px 0;border-bottom:1px solid var(--bd);
+white-space:normal;line-height:1.4}
+.rl .rt{font-family:var(--mono);font-size:16px;color:var(--ts);font-weight:600;padding-top:2px}
+.rl .rk{display:inline-block;font-weight:700;color:#000;margin-right:6px}
+.rl .ri{color:#000;font-weight:500}
+.rl .ra{grid-column:2;color:#083e93;font-weight:700;font-size:16px}
+.rl-none{padding:18px 0;color:var(--ts);font-size:17px}
+.detail .wrap{max-width:980px}
+.detail .rl{grid-template-columns:110px 1fr;font-size:19px}
 </style></head><body><div class="wrap">
 <a class="back" href="./">‹ All runs</a>
 <div class="head"><h1>Agentic Ops — Local (29)</h1><div class="meta">2026-08-15 · <b>Started</b> 23:10:40 · <b>Ended</b> 23:43:06 · EDT · worker primary</div>
@@ -101,23 +131,23 @@ background:#fff;border:1.5px solid #000;border-radius:8px;padding:6px 10px;max-w
 <tr class="lane" data-parent-grp="G2" hidden data-fn="slack later queue — alteryx" data-ft="alteryx" data-fa="project_coordinator" data-fm="amb-2359yn" data-fs="ok"><td class="ln">Slack Later queue — Alteryx<span class="info" data-tip="Works through messages saved for &#x27;Later&#x27; in Alteryx Slack and turns the ones that need action into tasks." tabindex="0">i</span></td><td><span class="cat a">Alteryx</span></td><td class="agent">project_coordinator</td><td class="machine">AMB-2359YN</td><td><span class="pill ok">Successful</span></td></tr>
 <tr class="grp" data-grp="G3" data-open="0"><td class="gn"><span class="chev">›</span>Social (2)<span class="info" data-tip="Checks the social accounts — LinkedIn, Instagram, YouTube, X, and more, for both Joshua and Practable. It looks for new messages and saved posts and turns the important ones into tasks. It never posts or replies on its own." tabindex="0">i</span></td><td><span class="cat p">Personal</span><span class="cat pr">Practable</span></td><td class="agent">marketing_operator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
 <tr class="lane" data-parent-grp="G3" hidden data-lane="L10" data-open="0" data-fn="social messages — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln hc"><span class="chev">›</span>Social messages — personal<span class="info" data-tip="Opens each social account and checks its inbox, message requests, and mentions. New things worth acting on become tasks. It never replies or posts on its own." tabindex="0">i</span></td><td><span class="cat p">Personal</span><span class="cat pr">Practable</span></td><td class="agent">marketing_operator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
-<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="linkedin — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">LinkedIn — personal<span class="info" data-tip="Checks this LinkedIn account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="st-ok">Successful</span></td></tr>
-<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="linkedin — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">LinkedIn — Practable<span class="info" data-tip="Checks this LinkedIn account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="st-ok">Successful</span></td></tr>
-<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="instagram — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">Instagram — personal<span class="info" data-tip="Checks this Instagram account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="st-ok">Successful</span></td></tr>
-<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="instagram — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">Instagram — Practable<span class="info" data-tip="Checks this Instagram account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="st-ok">Successful</span></td></tr>
-<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="x — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">X — personal<span class="info" data-tip="Checks this X account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="st-ok">Successful</span></td></tr>
-<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="x — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">X — Practable<span class="info" data-tip="Checks this X account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="st-ok">Successful</span></td></tr>
+<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="linkedin — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">LinkedIn — personal<span class="info" data-tip="Checks this LinkedIn account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="linkedin — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">LinkedIn — Practable<span class="info" data-tip="Checks this LinkedIn account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="instagram — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">Instagram — personal<span class="info" data-tip="Checks this Instagram account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="instagram — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">Instagram — Practable<span class="info" data-tip="Checks this Instagram account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="x — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">X — personal<span class="info" data-tip="Checks this X account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="x — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">X — Practable<span class="info" data-tip="Checks this X account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
 <tr class="lane" data-parent-grp="G3" hidden data-lane="L11" data-open="0" data-fn="social saved items" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="ln hc"><span class="chev">›</span>Social saved items<span class="info" data-tip="Goes through posts saved on each social platform and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td><span class="cat p">Personal</span><span class="cat pr">Practable</span></td><td class="agent">marketing_operator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill nd">Not due</span></td></tr>
-<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="linkedin — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">LinkedIn — personal<span class="info" data-tip="Looks at posts saved on this LinkedIn account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="st-nd">Not due</span></td></tr>
-<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="instagram — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">Instagram — personal<span class="info" data-tip="Looks at posts saved on this Instagram account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="st-nd">Not due</span></td></tr>
-<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="instagram — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">Instagram — Practable<span class="info" data-tip="Looks at posts saved on this Instagram account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="st-nd">Not due</span></td></tr>
-<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="youtube — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">YouTube — personal<span class="info" data-tip="Looks at posts saved on this YouTube account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="st-nd">Not due</span></td></tr>
-<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="youtube — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">YouTube — Practable<span class="info" data-tip="Looks at posts saved on this YouTube account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="st-nd">Not due</span></td></tr>
-<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="x — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">X — personal<span class="info" data-tip="Looks at posts saved on this X account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="st-nd">Not due</span></td></tr>
-<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="x — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">X — Practable<span class="info" data-tip="Looks at posts saved on this X account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="st-nd">Not due</span></td></tr>
-<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="threads — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">Threads — Practable<span class="info" data-tip="Looks at posts saved on this Threads account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="st-nd">Not due</span></td></tr>
-<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="tiktok — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">TikTok — Practable<span class="info" data-tip="Looks at posts saved on this TikTok account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="st-nd">Not due</span></td></tr>
-<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="reddit — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">Reddit — Practable<span class="info" data-tip="Looks at posts saved on this Reddit account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="st-nd">Not due</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="linkedin — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">LinkedIn — personal<span class="info" data-tip="Looks at posts saved on this LinkedIn account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill nd">Not due</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="instagram — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">Instagram — personal<span class="info" data-tip="Looks at posts saved on this Instagram account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill nd">Not due</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="instagram — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">Instagram — Practable<span class="info" data-tip="Looks at posts saved on this Instagram account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill nd">Not due</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="youtube — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">YouTube — personal<span class="info" data-tip="Looks at posts saved on this YouTube account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill nd">Not due</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="youtube — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">YouTube — Practable<span class="info" data-tip="Looks at posts saved on this YouTube account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill nd">Not due</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="x — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">X — personal<span class="info" data-tip="Looks at posts saved on this X account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill nd">Not due</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="x — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">X — Practable<span class="info" data-tip="Looks at posts saved on this X account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill nd">Not due</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="threads — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">Threads — Practable<span class="info" data-tip="Looks at posts saved on this Threads account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill nd">Not due</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="tiktok — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">TikTok — Practable<span class="info" data-tip="Looks at posts saved on this TikTok account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill nd">Not due</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="reddit — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="work">Reddit — Practable<span class="info" data-tip="Looks at posts saved on this Reddit account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill nd">Not due</span></td></tr>
 <tr class="grp" data-grp="G4" data-open="0"><td class="gn"><span class="chev">›</span>Finance (2)<span class="info" data-tip="Keeps an eye on money things: card charges that promised a statement credit, and packages from online orders. It only reads and reports — it never moves money." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">—</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
 <tr class="lane" data-parent-grp="G4" hidden data-fn="simplifi statement-credit verification" data-ft="personal" data-fa="financial_analyst" data-fm="joshua’s macbook pro" data-fs="nd"><td class="ln">Simplifi statement-credit verification<span class="info" data-tip="Checks card charges in Simplifi against promised statement credits, like Amex offers, and confirms each credit actually arrived. It only reads — it never moves money." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">financial_analyst</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill nd">Not due</span></td></tr>
 <tr class="lane" data-parent-grp="G4" hidden data-fn="order tracking — personal" data-ft="personal" data-fa="project_coordinator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Order tracking — personal <span class="cnt">9 seen, 0 changed</span><span class="info" data-tip="Watches order and shipping emails and keeps track of where each package is." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">project_coordinator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
@@ -151,7 +181,12 @@ background:#fff;border:1.5px solid #000;border-radius:8px;padding:6px 10px;max-w
 <span><span class="dot" style="background:#a3154c"></span>Failed</span>
 <span>Agent <b>runner</b> = deterministic lane, no agent involved</span>
 <span>All times Eastern (ET)</span></div>
-</div><div id="tip" role="tooltip"></div><script>
+</div><div id="tip" role="tooltip"></div>
+<div id="pnl-bg"></div><aside id="pnl" role="dialog" aria-modal="true" aria-labelledby="pnl-title">
+<div class="pnl-h"><h2 id="pnl-title"></h2><button id="pnl-close" class="pnl-x" type="button" aria-label="Close">×</button></div>
+<div id="pnl-meta" class="pnl-m"></div><div id="pnl-body" class="pnl-b"></div></aside>
+<script id="rc" type="application/json">{}</script>
+<script>
 (function(){var t=document.getElementById('t');if(!t)return;
 var filtering=false;
 function laneSet(r,open){var k=r.getAttribute('data-lane');if(!k)return;
@@ -226,5 +261,28 @@ var el=e.target.closest('.info');if(el)show(el);else hide()});
 document.addEventListener('click',function(e){
 var el=e.target.closest('.info');if(el)show(el)});
 window.addEventListener('scroll',hide,true);
+var rcEl=document.getElementById('rc'),pnl=document.getElementById('pnl'),bg=document.getElementById('pnl-bg');
+var RC={};try{RC=JSON.parse(rcEl?rcEl.textContent:'{}')||{}}catch(e){RC={}}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function lines(rs){if(!rs||!rs.length)return '<div class="rl-none">Nothing was changed by this lane in this run.</div>';
+var h='<ol class="rl-list">';for(var i=0;i<rs.length;i++){var r=rs[i];
+h+='<li class="rl"><span class="rt">'+esc(r.at)+'</span><span><span class="rk">'+esc(r.kind)+'</span><span class="ri">'+esc(r.item)+'</span></span><span class="ra">'+esc(r.action)+'</span></li>'}
+return h+'</ol>'}
+function openPanel(slug){var d=RC[slug];if(!d||!pnl)return;
+document.getElementById('pnl-title').textContent=d.lane;
+document.getElementById('pnl-meta').innerHTML='<span class="pill '+esc(d.status)+'">'+esc(d.label)+'</span>'+
+'<span class="t"><b>Started</b> '+esc(d.start)+' · <b>Ended</b> '+esc(d.end)+'</span><span>'+esc(d.machine)+'</span>'+
+'<a class="pnl-open" href="'+esc(d.page)+'">Open full page ↗</a>';
+document.getElementById('pnl-body').innerHTML=lines(d.receipt);
+pnl.classList.add('open');bg.classList.add('open');
+if(history.replaceState)history.replaceState(null,'','#'+slug);
+document.getElementById('pnl-close').focus()}
+function closePanel(){if(!pnl)return;pnl.classList.remove('open');bg.classList.remove('open');
+if(history.replaceState)history.replaceState(null,'',location.pathname+location.search)}
+document.addEventListener('click',function(e){var c=e.target.closest('.rcpt');
+if(c){e.stopPropagation();openPanel(c.getAttribute('data-rc'));return}
+if(e.target.closest('#pnl-close')||e.target===bg)closePanel()},true);
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closePanel()});
+if(location.hash&&RC[location.hash.slice(1)])openPanel(location.hash.slice(1));
 })();
 </script></body></html>
