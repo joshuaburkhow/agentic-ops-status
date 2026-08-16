@@ -1,0 +1,121 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Todoist inbox routing — 2026-08-16T08-41-51Z</title>
+<meta name="robots" content="noindex">
+<style>
+/* Always light, high contrast, large type — the Principal reads this page with low
+   vision. No dark mode: the page paints its own white ground and near-black ink
+   whatever the device is set to. Every text colour here is at least 7:1 against its
+   background (WCAG AAA). Every pill is drawn from the Practable AI palette — the site's
+   own ink #14294A, blue #1F7AEF, violet #6C4BF5 and slate #53627A — as light tints with
+   dark text and a matching outline, the style the Principal likes on the lane-type
+   badges. Status: blue = Successful, slate = Not due, violet = Not Completed, and
+   Failed is a solid deep raspberry #A3154C with white text — the closest to red that
+   still belongs to this palette (violet's warm neighbour) — so the one row that needs
+   eyes stands out; and
+   borders are 1px solid mid-grey so rows and columns read as lines, not hints. */
+:root{color-scheme:light;--s2:#fff;--s1:#eeeeee;--s0:#f7f7f7;--bd:#8c8c8c;--tp:#000;
+--ts:#1a1a1a;--tm:#333;
+--ok-b:#d9e9ff;--ok-t:#083e93;--nd-b:#e3e7ee;--nd-t:#3b4658;--nc-b:#e7e0ff;--nc-t:#4520b8;
+--fail-b:#a3154c;--fail-t:#8e1048;
+--p-b:#cfe0ff;--p-t:#062a70;--a-b:#c4ecf2;--a-t:#03434f;--pr-b:#e2d6ff;--pr-t:#3a0f8a;
+--mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+html{background:#fff}
+body{margin:0;padding:24px;background:#fff;font-family:var(--sans);color:var(--tp);font-size:18px}
+.wrap{max-width:1500px;margin:0 auto}
+.head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px}
+.head h1{font-size:28px;font-weight:700;margin:0;color:#000}
+.head .meta{font-size:18px;color:var(--ts);font-family:var(--mono);font-weight:500}
+#xall{border:2px solid #000;background:#fff;color:#000;font-size:17px;font-weight:600;
+padding:6px 16px;border-radius:18px;cursor:pointer;font-family:var(--sans)}
+#xall:hover{background:#000;color:#fff}
+.frame{overflow-x:auto;border:2px solid #000;border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:18px;min-width:1040px}
+th,td{white-space:nowrap}
+thead tr{background:var(--s1)}
+th{text-align:left;padding:12px 14px;font-weight:700;color:#000;border-bottom:2px solid #000;font-size:17px}
+td{padding:12px 14px;border-bottom:1px solid var(--bd)}
+tr[data-grp],tr[data-lane]{cursor:pointer}
+tr.grp td{background:var(--s1);border-bottom:1px solid #000}
+.gn{padding-left:14px;font-weight:700;font-size:19px}
+tr.lane .ln{padding-left:40px;color:#000;font-weight:500}tr.lane .ln.hc{padding-left:18px}
+.cnt{color:var(--tm);font-size:16px;font-weight:500}
+.agent,.machine,.t{font-family:var(--mono);font-size:17px;color:var(--ts);font-weight:500}
+.chev{display:inline-block;margin-right:8px;color:#000;font-weight:700;transition:transform .12s}
+tr[data-open="1"] .chev{transform:rotate(90deg)}
+.pill{display:inline-flex;align-items:center;padding:4px 13px;border-radius:20px;font-size:16px;font-weight:700;
+border:1.5px solid currentColor}
+.pill.ok{background:var(--ok-b);color:var(--ok-t)}
+.pill.nd{background:var(--nd-b);color:var(--nd-t)}
+.pill.nc{background:var(--nc-b);color:var(--nc-t)}
+.pill.fail{background:var(--fail-b);color:#fff;border-color:#000}
+.cat{display:inline-block;padding:3px 11px;border-radius:12px;font-size:15px;font-weight:700;margin-right:5px;
+border:1.5px solid currentColor}
+.cat.p{background:var(--p-b);color:var(--p-t)}.cat.a{background:var(--a-b);color:var(--a-t)}
+.cat.pr{background:var(--pr-b);color:var(--pr-t)}
+tr.item{background:var(--s0)}tr.item td{padding:9px 14px}
+tr.item .work{padding-left:64px;color:var(--ts);font-weight:500}
+tr.item .st-ok{color:var(--ok-t)}tr.item .st-nd{color:var(--nd-t)}
+tr.item .st-nc{color:var(--nc-t)}tr.item .st-fail{color:var(--fail-t)}
+tr.item .st-ok,tr.item .st-nd,tr.item .st-nc,tr.item .st-fail{font-size:16px;font-weight:700}
+tr.item .t{font-size:16px}
+tr.item .note{color:var(--tm);font-size:16px}
+.info{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
+border:2px solid #000;border-radius:50%;color:#000;background:#fff;font-size:14px;font-weight:700;
+font-family:var(--sans);font-style:normal;margin-left:9px;cursor:help;vertical-align:2px}
+.info:hover,.info:focus{background:#000;color:#fff;outline:none}
+#tip{position:fixed;display:none;z-index:9;max-width:440px;white-space:normal;background:#fff;
+border:2px solid #000;border-radius:10px;padding:14px 16px;font-size:18px;line-height:1.5;
+color:#000;font-weight:500;box-shadow:0 8px 28px rgba(0,0,0,.3)}
+.filters td{background:var(--s1);padding:8px 14px;border-bottom:2px solid #000}
+.filters input,.filters select{font-family:var(--sans);font-size:16px;color:#000;
+background:#fff;border:1.5px solid #000;border-radius:8px;padding:6px 10px;max-width:100%}
+.filters input::placeholder{color:#444}
+.filters input:focus,.filters select:focus{outline:3px solid #0645ad;outline-offset:1px}
+.fname{width:260px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:16px;color:var(--ts);font-weight:500}
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:6px;border:1.5px solid #000}
+.back{display:inline-block;margin-bottom:14px;font-size:18px;color:#0645ad;text-decoration:underline;font-weight:600}
+.back:hover{color:#000}
+/* Receipts — what a lane actually did, one line per write. A small chip on the lane
+   row opens a panel from the right; the panel links to a full page of the same lines. */
+.rcpt{display:inline-block;margin-left:10px;padding:2px 10px;border-radius:12px;font-size:14px;
+font-weight:700;color:#3b4658;background:#e3e7ee;border:1.5px solid currentColor;cursor:pointer;
+font-family:var(--sans);line-height:1.4;vertical-align:1px}
+.rcpt:hover,.rcpt:focus{background:#3b4658;color:#fff;outline:none}
+#pnl-bg{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:20;display:none}
+#pnl{position:fixed;top:0;right:0;bottom:0;width:min(640px,94vw);background:#fff;z-index:21;
+border-left:2px solid #000;box-shadow:-10px 0 30px rgba(0,0,0,.25);display:none;flex-direction:column;
+font-size:18px;color:#000}
+#pnl.open,#pnl-bg.open{display:flex}
+#pnl-bg.open{display:block}
+.pnl-h{padding:18px 22px 14px;border-bottom:2px solid #000;display:flex;align-items:flex-start;gap:12px}
+.pnl-h h2{margin:0;font-size:24px;font-weight:700;flex:1;white-space:normal;line-height:1.25}
+.pnl-x{border:2px solid #000;background:#fff;color:#000;font-size:20px;font-weight:700;width:38px;height:38px;
+border-radius:50%;cursor:pointer;line-height:1;flex:none}
+.pnl-x:hover{background:#000;color:#fff}
+.pnl-m{padding:12px 22px;border-bottom:1px solid var(--bd);display:flex;flex-wrap:wrap;gap:10px 16px;
+align-items:center;font-size:16px;color:var(--ts);font-weight:500}
+.pnl-m .t{font-size:16px}
+.pnl-open{margin-left:auto;font-weight:700;color:#0645ad;text-decoration:underline;font-size:16px}
+.pnl-b{padding:10px 22px 24px;overflow:auto;flex:1}
+.rl-list{list-style:none;margin:0;padding:0}
+.rl{display:grid;grid-template-columns:96px 1fr;gap:4px 14px;padding:12px 0;border-bottom:1px solid var(--bd);
+white-space:normal;line-height:1.4}
+.rl .rt{font-family:var(--mono);font-size:16px;color:var(--ts);font-weight:600;padding-top:2px}
+.rl .rk{display:inline-block;font-weight:700;color:#000;margin-right:6px}
+.rl .ri{color:#000;font-weight:500}
+.rl .ra{grid-column:2;color:#083e93;font-weight:700;font-size:16px}
+.rl-none{padding:18px 0;color:var(--ts);font-size:17px}
+.detail .wrap{max-width:980px}
+.detail .rl{grid-template-columns:110px 1fr;font-size:19px}
+</style></head><body class="detail"><div class="wrap">
+<a class="back" href="run-2026-08-16T08-41-51Z.html#todoist-inbox-routing">‹ Back to the run</a>
+<div class="head"><h1>Todoist inbox routing</h1><div class="meta">2026-08-16 · <b>Started</b> 04:11:31 · <b>Ended</b> 04:11:41 · EDT</div></div>
+<div class="pnl-m" style="padding:12px 0;border-bottom:2px solid #000;margin-bottom:8px">
+<span class="pill ok">Successful</span><span class="cat p">Personal</span>
+<span class="agent">automation_engineer</span><span class="machine">Joshua’s MacBook Pro</span>
+<span>1 item</span></div>
+<ol class="rl-list"><li class="rl"><span class="rt">04:11:39</span><span><span class="rk">Task</span><span class="ri">RSVP decision needed — Joshua / Chris - Catch up (Tue Aug 18, 2:30pm PT…</span></span><span class="ra">moved to Automate Alteryx — Overflow 2</span></li></ol>
+<div class="legend"><span>One line per thing this lane did: time · what it was · which one · what was done</span><span>All times Eastern (ET)</span></div>
+</div></body></html>
