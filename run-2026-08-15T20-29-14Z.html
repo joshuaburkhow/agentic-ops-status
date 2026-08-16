@@ -30,6 +30,11 @@ body{margin:0;padding:24px;background:#fff;font-family:var(--sans);color:var(--t
 #xall{border:2px solid #000;background:#fff;color:#000;font-size:17px;font-weight:600;
 padding:6px 16px;border-radius:18px;cursor:pointer;font-family:var(--sans)}
 #xall:hover{background:#000;color:#fff}
+.hctl{display:flex;align-items:center;gap:10px}
+.rnav{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;
+border:2px solid #000;background:#fff;color:#000;font-size:22px;font-weight:700;text-decoration:none;line-height:1}
+.rnav:hover{background:#000;color:#fff}
+.rnav.off{opacity:.3;pointer-events:none}
 .frame{overflow-x:auto;border:2px solid #000;border-radius:10px}
 table{width:100%;border-collapse:collapse;font-size:18px;min-width:1040px}
 th,td{white-space:nowrap}
@@ -108,10 +113,11 @@ white-space:normal;line-height:1.4}
 .rl-none{padding:18px 0;color:var(--ts);font-size:17px}
 .detail .wrap{max-width:980px}
 .detail .rl{grid-template-columns:110px 1fr;font-size:19px}
-</style></head><body><div class="wrap">
+</style></head><body data-run="2026-08-15T20-29-14Z"><div class="wrap">
 <a class="back" href="./">‹ All runs</a>
 <div class="head"><h1>Agentic Ops — Local (28)</h1><div class="meta">2026-08-15 · <b>Started</b> 16:11:24 · <b>Ended</b> 16:28:34 · EDT · worker primary</div>
-<button id="xall" type="button" data-open="0">Expand all</button></div>
+<div class="hctl"><a id="rprev" class="rnav off" href="./" title="Previous run (older)" aria-label="Previous run">‹</a><a id="rnext" class="rnav off" href="./" title="Next run (newer)" aria-label="Next run">›</a>
+<button id="xall" type="button" data-open="0">Expand all</button></div></div>
 <div class="frame"><table id="t"><thead><tr>
 <th>Group / lane / work item</th><th>Lane type</th><th>Agent</th><th>Machine</th><th>Status</th></tr>
 <tr id="fr" class="filters"><td><input class="fname" data-col="n" type="search" placeholder="Filter lanes and items…"></td><td><select data-col="t"><option value="">All types</option><option value="personal">Personal</option><option value="alteryx">Alteryx</option><option value="practable">Practable</option></select></td><td><select data-col="a"><option value="">All agents</option><option value="automation_engineer">automation_engineer</option><option value="financial_analyst">financial_analyst</option><option value="marketing_operator">marketing_operator</option><option value="project_coordinator">project_coordinator</option><option value="research_analyst">research_analyst</option></select></td><td><select data-col="m"><option value="">All machines</option><option value="amb-2359yn">AMB-2359YN</option><option value="joshua’s macbook pro">Joshua’s MacBook Pro</option></select></td><td><select data-col="s"><option value="">All statuses</option><option value="ok">Successful</option><option value="nd">Not due</option><option value="nc">Not Completed</option></select></td></tr></thead>
@@ -283,5 +289,19 @@ if(c){e.stopPropagation();openPanel(c.getAttribute('data-rc'));return}
 if(e.target.closest('#pnl-close')||e.target===bg)closePanel()},true);
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closePanel()});
 if(location.hash&&RC[location.hash.slice(1)])openPanel(location.hash.slice(1));
+/* Previous / next run. The next run does not exist when a page is published, so the
+   arrows read the run list from the site's own index at view time — the same list
+   the "All runs" page shows, newest first — and point at this run's neighbours. If
+   the index cannot be read (offline, first build), the arrows stay dim. */
+var cur=document.body.getAttribute('data-run'),pv=document.getElementById('rprev'),nx=document.getElementById('rnext');
+if(cur&&pv&&nx&&window.fetch){fetch('./index.html',{cache:'no-store'}).then(function(r){return r.text()}).then(function(t){
+var ids=[],re=/href="run-([0-9TZ-]+)\.html"/g,m;while((m=re.exec(t)))ids.push(m[1]);
+var i=ids.indexOf(cur);if(i<0)return;
+if(i+1<ids.length){pv.href='run-'+ids[i+1]+'.html';pv.classList.remove('off')}
+if(i>0){nx.href='run-'+ids[i-1]+'.html';nx.classList.remove('off')}
+}).catch(function(){})}
+document.addEventListener('keydown',function(e){if(e.target&&/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;
+if(e.key==='ArrowLeft'&&pv&&!pv.classList.contains('off'))location.href=pv.href;
+if(e.key==='ArrowRight'&&nx&&!nx.classList.contains('off'))location.href=nx.href});
 })();
 </script></body></html>
