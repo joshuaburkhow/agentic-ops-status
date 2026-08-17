@@ -1,0 +1,309 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Agentic Ops — Local run 2026-08-17T03-46-47Z</title>
+<meta name="lane-status-counts" content="ok=26 nd=4">
+<meta name="run-when" content="2026-08-16 23:08:35 EDT"><meta name="run-ended" content="23:40:17">
+<style>
+/* Always light, high contrast, large type — the Principal reads this page with low
+   vision. No dark mode: the page paints its own white ground and near-black ink
+   whatever the device is set to. Every text colour here is at least 7:1 against its
+   background (WCAG AAA). Every pill is drawn from the Practable AI palette — the site's
+   own ink #14294A, blue #1F7AEF, violet #6C4BF5 and slate #53627A — as light tints with
+   dark text and a matching outline, the style the Principal likes on the lane-type
+   badges. Status: blue = Successful, slate = Not due, violet = Not Completed, and
+   Failed is a solid deep raspberry #A3154C with white text — the closest to red that
+   still belongs to this palette (violet's warm neighbour) — so the one row that needs
+   eyes stands out; and
+   borders are 1px solid mid-grey so rows and columns read as lines, not hints. */
+:root{color-scheme:light;--s2:#fff;--s1:#eeeeee;--s0:#f7f7f7;--bd:#8c8c8c;--tp:#000;
+--ts:#1a1a1a;--tm:#333;
+--ok-b:#d9e9ff;--ok-t:#083e93;--nd-b:#e3e7ee;--nd-t:#3b4658;--nc-b:#e7e0ff;--nc-t:#4520b8;
+--fail-b:#a3154c;--fail-t:#8e1048;
+--p-b:#cfe0ff;--p-t:#062a70;--a-b:#c4ecf2;--a-t:#03434f;--pr-b:#e2d6ff;--pr-t:#3a0f8a;
+--mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+html{background:#fff}
+body{margin:0;padding:24px;background:#fff;font-family:var(--sans);color:var(--tp);font-size:18px}
+.wrap{max-width:1500px;margin:0 auto}
+.head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px}
+.head h1{font-size:28px;font-weight:700;margin:0;color:#000}
+.head .meta{font-size:18px;color:var(--ts);font-family:var(--mono);font-weight:500}
+#xall{border:2px solid #000;background:#fff;color:#000;font-size:17px;font-weight:600;
+padding:6px 16px;border-radius:18px;cursor:pointer;font-family:var(--sans)}
+#xall:hover{background:#000;color:#fff}
+.hctl{display:flex;align-items:center;gap:10px}
+.rnav{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;
+border:2px solid #000;background:#fff;color:#000;font-size:22px;font-weight:700;text-decoration:none;line-height:1}
+.rnav:hover{background:#000;color:#fff}
+.rnav.off{opacity:.3;pointer-events:none}
+.frame{overflow-x:auto;border:2px solid #000;border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:18px;min-width:1040px}
+th,td{white-space:nowrap}
+thead tr{background:var(--s1)}
+th{text-align:left;padding:12px 14px;font-weight:700;color:#000;border-bottom:2px solid #000;font-size:17px}
+td{padding:12px 14px;border-bottom:1px solid var(--bd)}
+tr[data-grp],tr[data-lane]{cursor:pointer}
+tr.grp td{background:var(--s1);border-bottom:1px solid #000}
+.gn{padding-left:14px;font-weight:700;font-size:19px}
+tr.lane .ln{padding-left:40px;color:#000;font-weight:500}tr.lane .ln.hc{padding-left:18px}
+.cnt{color:var(--tm);font-size:16px;font-weight:500}
+.agent,.machine,.t{font-family:var(--mono);font-size:17px;color:var(--ts);font-weight:500}
+.chev{display:inline-block;margin-right:8px;color:#000;font-weight:700;transition:transform .12s}
+tr[data-open="1"] .chev{transform:rotate(90deg)}
+.pill{display:inline-flex;align-items:center;padding:4px 13px;border-radius:20px;font-size:16px;font-weight:700;
+border:1.5px solid currentColor}
+.pill.ok{background:var(--ok-b);color:var(--ok-t)}
+.pill.nd{background:var(--nd-b);color:var(--nd-t)}
+.pill.nc{background:var(--nc-b);color:var(--nc-t)}
+.pill.fail{background:var(--fail-b);color:#fff;border-color:#000}
+.cat{display:inline-block;padding:3px 11px;border-radius:12px;font-size:15px;font-weight:700;margin-right:5px;
+border:1.5px solid currentColor}
+.cat.p{background:var(--p-b);color:var(--p-t)}.cat.a{background:var(--a-b);color:var(--a-t)}
+.cat.pr{background:var(--pr-b);color:var(--pr-t)}
+tr.item{background:var(--s0)}tr.item td{padding:9px 14px}
+tr.item .work{padding-left:64px;color:var(--ts);font-weight:500}
+tr.item .pill{padding:2px 11px;font-size:15px}
+tr.item .t{font-size:16px}
+tr.item .note{color:var(--tm);font-size:16px}
+.info{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
+border:2px solid #000;border-radius:50%;color:#000;background:#fff;font-size:14px;font-weight:700;
+font-family:var(--sans);font-style:normal;margin-left:9px;cursor:help;vertical-align:2px}
+.info:hover,.info:focus{background:#000;color:#fff;outline:none}
+#tip{position:fixed;display:none;z-index:9;max-width:440px;white-space:normal;background:#fff;
+border:2px solid #000;border-radius:10px;padding:14px 16px;font-size:18px;line-height:1.5;
+color:#000;font-weight:500;box-shadow:0 8px 28px rgba(0,0,0,.3)}
+.filters td{background:var(--s1);padding:8px 14px;border-bottom:2px solid #000}
+.filters input,.filters select{font-family:var(--sans);font-size:16px;color:#000;
+background:#fff;border:1.5px solid #000;border-radius:8px;padding:6px 10px;max-width:100%}
+.filters input::placeholder{color:#444}
+.filters input:focus,.filters select:focus{outline:3px solid #0645ad;outline-offset:1px}
+.fname{width:260px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:16px;color:var(--ts);font-weight:500}
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:6px;border:1.5px solid #000}
+.back{display:inline-block;margin-bottom:14px;font-size:18px;color:#0645ad;text-decoration:underline;font-weight:600}
+.back:hover{color:#000}
+/* Receipts — what a lane actually did, one line per write. A small chip on the lane
+   row opens a panel from the right; the panel links to a full page of the same lines. */
+.rcpt{display:inline-block;margin-left:10px;padding:2px 10px;border-radius:12px;font-size:14px;
+font-weight:700;color:#3b4658;background:#e3e7ee;border:1.5px solid currentColor;cursor:pointer;
+font-family:var(--sans);line-height:1.4;vertical-align:1px}
+.rcpt:hover,.rcpt:focus{background:#3b4658;color:#fff;outline:none}
+#pnl-bg{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:20;display:none}
+#pnl{position:fixed;top:0;right:0;bottom:0;width:min(640px,94vw);background:#fff;z-index:21;
+border-left:2px solid #000;box-shadow:-10px 0 30px rgba(0,0,0,.25);display:none;flex-direction:column;
+font-size:18px;color:#000}
+#pnl.open,#pnl-bg.open{display:flex}
+#pnl-bg.open{display:block}
+.pnl-h{padding:18px 22px 14px;border-bottom:2px solid #000;display:flex;align-items:flex-start;gap:12px}
+.pnl-h h2{margin:0;font-size:24px;font-weight:700;flex:1;white-space:normal;line-height:1.25}
+.pnl-x{border:2px solid #000;background:#fff;color:#000;font-size:20px;font-weight:700;width:38px;height:38px;
+border-radius:50%;cursor:pointer;line-height:1;flex:none}
+.pnl-x:hover{background:#000;color:#fff}
+.pnl-m{padding:12px 22px;border-bottom:1px solid var(--bd);display:flex;flex-wrap:wrap;gap:10px 16px;
+align-items:center;font-size:16px;color:var(--ts);font-weight:500}
+.pnl-m .t{font-size:16px}
+.pnl-open{margin-left:auto;font-weight:700;color:#0645ad;text-decoration:underline;font-size:16px}
+.pnl-b{padding:10px 22px 24px;overflow:auto;flex:1}
+.rl-list{list-style:none;margin:0;padding:0}
+.rl{display:grid;grid-template-columns:96px 1fr;gap:4px 14px;padding:12px 0;border-bottom:1px solid var(--bd);
+white-space:normal;line-height:1.4}
+.rl .rt{font-family:var(--mono);font-size:16px;color:var(--ts);font-weight:600;padding-top:2px}
+.rl .rk{display:inline-block;font-weight:700;color:#000;margin-right:6px}
+.rl .ri{color:#000;font-weight:500}
+.rl .ra{grid-column:2;color:#083e93;font-weight:700;font-size:16px}
+.rl-none{padding:18px 0;color:var(--ts);font-size:17px}
+.detail .wrap{max-width:980px}
+.detail .rl{grid-template-columns:110px 1fr;font-size:19px}
+</style></head><body data-run="2026-08-17T03-46-47Z"><div class="wrap">
+<a class="back" href="./">‹ All runs</a>
+<div class="head"><h1>Agentic Ops — Local (30)</h1><div class="meta">2026-08-16 · <b>Started</b> 23:08:35 · <b>Ended</b> 23:40:17 · EDT · worker primary</div>
+<div class="hctl"><a id="rprev" class="rnav off" href="./" title="Previous run (older)" aria-label="Previous run">‹</a><a id="rnext" class="rnav off" href="./" title="Next run (newer)" aria-label="Next run">›</a>
+<button id="xall" type="button" data-open="0">Expand all</button></div></div>
+<div class="frame"><table id="t"><thead><tr>
+<th>Group / lane / work item</th><th>Lane type</th><th>Agent</th><th>Machine</th><th>Status</th></tr>
+<tr id="fr" class="filters"><td><input class="fname" data-col="n" type="search" placeholder="Filter lanes and items…"></td><td><select data-col="t"><option value="">All types</option><option value="personal">Personal</option><option value="alteryx">Alteryx</option><option value="practable">Practable</option></select></td><td><select data-col="a"><option value="">All agents</option><option value="automation_engineer">automation_engineer</option><option value="financial_analyst">financial_analyst</option><option value="marketing_operator">marketing_operator</option><option value="project_coordinator">project_coordinator</option><option value="research_analyst">research_analyst</option></select></td><td><select data-col="m"><option value="">All machines</option><option value="amb-2359yn">AMB-2359YN</option><option value="joshua’s macbook pro">Joshua’s MacBook Pro</option></select></td><td><select data-col="s"><option value="">All statuses</option><option value="ok">Successful</option><option value="nd">Not due</option></select></td></tr></thead>
+<tbody>
+<tr class="grp" data-grp="G0" data-open="0"><td class="gn"><span class="chev">›</span>Email (3)<span class="info" data-tip="Watches the email inboxes — personal, Alteryx work, and Practable. Each lane sorts new mail and turns anything that needs action into a task. Nothing is ever sent or deleted." tabindex="0">i</span></td><td><span class="cat p">Personal</span><span class="cat a">Alteryx</span><span class="cat pr">Practable</span></td><td class="agent">project_coordinator</td><td class="machine">—</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G0" hidden data-fn="gmail triage — personal" data-ft="personal" data-fa="project_coordinator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Gmail triage — personal<span class="info" data-tip="Sorts new mail in the personal Gmail inbox. Important messages become tasks; the rest is filed. Nothing is sent or deleted." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">project_coordinator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G0" hidden data-fn="gmail triage — alteryx" data-ft="alteryx" data-fa="project_coordinator" data-fm="amb-2359yn" data-fs="ok"><td class="ln">Gmail triage — Alteryx<span class="info" data-tip="Sorts new mail in the Alteryx work inbox, on the Alteryx laptop. Important messages become tasks; the rest is filed." tabindex="0">i</span></td><td><span class="cat a">Alteryx</span></td><td class="agent">project_coordinator</td><td class="machine">AMB-2359YN</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G0" hidden data-fn="gmail triage — practable" data-ft="practable" data-fa="project_coordinator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Gmail triage — Practable<span class="info" data-tip="Sorts new mail in the Practable inbox. Important messages become tasks; the rest is filed." tabindex="0">i</span></td><td><span class="cat pr">Practable</span></td><td class="agent">project_coordinator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="grp" data-grp="G1" data-open="0"><td class="gn"><span class="chev">›</span>Calendar (5)<span class="info" data-tip="Keeps the calendars in shape. These lanes watch new invites, personal appointments, and tomorrow&#x27;s meetings so nothing shows up as a surprise." tabindex="0">i</span></td><td><span class="cat p">Personal</span><span class="cat a">Alteryx</span><span class="cat pr">Practable</span></td><td class="agent">project_coordinator</td><td class="machine">—</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G1" hidden data-fn="calendar invitations — personal" data-ft="personal" data-fa="project_coordinator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Calendar invitations — personal<span class="info" data-tip="Looks for new invites on the personal calendar and flags the ones that need a yes or no." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">project_coordinator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G1" hidden data-fn="calendar invitations — alteryx" data-ft="alteryx" data-fa="project_coordinator" data-fm="amb-2359yn" data-fs="ok"><td class="ln">Calendar invitations — Alteryx<span class="info" data-tip="Looks for new invites on the Alteryx work calendar and flags the ones that need a yes or no." tabindex="0">i</span></td><td><span class="cat a">Alteryx</span></td><td class="agent">project_coordinator</td><td class="machine">AMB-2359YN</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G1" hidden data-fn="calendar invitations — practable" data-ft="practable" data-fa="project_coordinator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Calendar invitations — Practable<span class="info" data-tip="Looks for new invites on the Practable calendar and flags the ones that need a yes or no." tabindex="0">i</span></td><td><span class="cat pr">Practable</span></td><td class="agent">project_coordinator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G1" hidden data-fn="appointments — personal" data-ft="personal" data-fa="project_coordinator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Appointments — personal<span class="info" data-tip="Watches personal appointments — doctor, home, family — and makes sure each upcoming one is on the calendar with what it needs." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">project_coordinator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G1" hidden data-fn="tomorrow&#x27;s meetings — prep and travel" data-ft="personal" data-fa="project_coordinator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="ln">Tomorrow&#x27;s meetings — prep and travel<span class="info" data-tip="Each day it reads tomorrow&#x27;s meetings and asks two questions: does this need prep, and does it need a travel block with real drive time? It adds tasks for whatever is missing." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">project_coordinator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill nd">Not due</span></td></tr>
+<tr class="grp" data-grp="G2" data-open="0"><td class="gn"><span class="chev">›</span>Slack (2)<span class="info" data-tip="Reads work Slack on the Alteryx laptop. One lane sorts new messages, the other works through the saved &#x27;Later&#x27; list. Things that need action become tasks; nothing is replied to or deleted." tabindex="0">i</span></td><td><span class="cat a">Alteryx</span></td><td class="agent">project_coordinator</td><td class="machine">AMB-2359YN</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G2" hidden data-fn="slack triage — alteryx" data-ft="alteryx" data-fa="project_coordinator" data-fm="amb-2359yn" data-fs="ok"><td class="ln">Slack triage — Alteryx<span class="info" data-tip="Reads new messages in Alteryx Slack and flags the ones that need a reply or some work. It never replies on its own." tabindex="0">i</span></td><td><span class="cat a">Alteryx</span></td><td class="agent">project_coordinator</td><td class="machine">AMB-2359YN</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G2" hidden data-fn="slack later queue — alteryx" data-ft="alteryx" data-fa="project_coordinator" data-fm="amb-2359yn" data-fs="ok"><td class="ln">Slack Later queue — Alteryx<span class="info" data-tip="Works through messages saved for &#x27;Later&#x27; in Alteryx Slack and turns the ones that need action into tasks." tabindex="0">i</span></td><td><span class="cat a">Alteryx</span></td><td class="agent">project_coordinator</td><td class="machine">AMB-2359YN</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="grp" data-grp="G3" data-open="0"><td class="gn"><span class="chev">›</span>Social (2)<span class="info" data-tip="Checks the social accounts — LinkedIn, Instagram, YouTube, X, and more, for both Joshua and Practable. It looks for new messages and saved posts and turns the important ones into tasks. It never posts or replies on its own." tabindex="0">i</span></td><td><span class="cat p">Personal</span><span class="cat pr">Practable</span></td><td class="agent">marketing_operator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G3" hidden data-lane="L10" data-open="0" data-fn="social messages — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln hc"><span class="chev">›</span>Social messages — personal<span class="info" data-tip="Opens each social account and checks its inbox, message requests, and mentions. New things worth acting on become tasks. It never replies or posts on its own." tabindex="0">i</span></td><td><span class="cat p">Personal</span><span class="cat pr">Practable</span></td><td class="agent">marketing_operator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="linkedin — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">LinkedIn — personal<span class="info" data-tip="Checks this LinkedIn account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="linkedin — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">LinkedIn — Practable<span class="info" data-tip="Checks this LinkedIn account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="instagram — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">Instagram — personal<span class="info" data-tip="Checks this Instagram account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="instagram — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">Instagram — Practable<span class="info" data-tip="Checks this Instagram account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="x — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">X — personal<span class="info" data-tip="Checks this X account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L10" data-parent-grp="G3" hidden data-fn="x — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">X — Practable<span class="info" data-tip="Checks this X account for new messages, requests, and mentions. Anything that needs action becomes a task. It never replies or posts on its own." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G3" hidden data-lane="L11" data-open="0" data-fn="social saved items" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln hc"><span class="chev">›</span>Social saved items<span class="info" data-tip="Goes through posts saved on each social platform and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td><span class="cat p">Personal</span><span class="cat pr">Practable</span></td><td class="agent">marketing_operator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="linkedin — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">LinkedIn — personal<span class="info" data-tip="Looks at posts saved on this LinkedIn account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="instagram — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">Instagram — personal<span class="info" data-tip="Looks at posts saved on this Instagram account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="instagram — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">Instagram — Practable<span class="info" data-tip="Looks at posts saved on this Instagram account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="youtube — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">YouTube — personal<span class="info" data-tip="Looks at posts saved on this YouTube account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="youtube — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">YouTube — Practable<span class="info" data-tip="Looks at posts saved on this YouTube account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="x — personal" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">X — personal<span class="info" data-tip="Looks at posts saved on this X account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="x — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">X — Practable<span class="info" data-tip="Looks at posts saved on this X account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="threads — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">Threads — Practable<span class="info" data-tip="Looks at posts saved on this Threads account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="tiktok — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">TikTok — Practable<span class="info" data-tip="Looks at posts saved on this TikTok account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="item" data-parent="L11" data-parent-grp="G3" hidden data-fn="reddit — practable" data-ft="personal practable" data-fa="marketing_operator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="work">Reddit — Practable<span class="info" data-tip="Looks at posts saved on this Reddit account and turns the useful ones into tasks or notes." tabindex="0">i</span></td><td></td><td></td><td></td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="grp" data-grp="G4" data-open="0"><td class="gn"><span class="chev">›</span>Finance (2)<span class="info" data-tip="Keeps an eye on money things: card charges that promised a statement credit, and packages from online orders. It only reads and reports — it never moves money." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">—</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G4" hidden data-fn="simplifi statement-credit verification" data-ft="personal" data-fa="financial_analyst" data-fm="joshua’s macbook pro" data-fs="nd"><td class="ln">Simplifi statement-credit verification<span class="info" data-tip="Checks card charges in Simplifi against promised statement credits, like Amex offers, and confirms each credit actually arrived. It only reads — it never moves money." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">financial_analyst</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill nd">Not due</span></td></tr>
+<tr class="lane" data-parent-grp="G4" hidden data-fn="order tracking — personal" data-ft="personal" data-fa="project_coordinator" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Order tracking — personal<span class="info" data-tip="Watches order and shipping emails and keeps track of where each package is." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">project_coordinator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="grp" data-grp="G5" data-open="0"><td class="gn"><span class="chev">›</span>Todoist (4)<span class="info" data-tip="Keeps the task list itself clean. These lanes move new tasks to the right project, fix labels, close duplicate copies, and list what is due today." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">automation_engineer</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G5" hidden data-fn="todoist inbox routing" data-ft="personal" data-fa="automation_engineer" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Todoist inbox routing<span class="info" data-tip="Moves new tasks out of the inbox into the right project, following the routing rules." tabindex="0">i</span><button class="rcpt" type="button" data-rc="todoist-inbox-routing" title="What this lane did">6 items ▸</button></td><td><span class="cat p">Personal</span></td><td class="agent">automation_engineer</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G5" hidden data-fn="todoist unlabeled classification" data-ft="personal" data-fa="automation_engineer" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Todoist unlabeled classification<span class="info" data-tip="Finds new tasks with no labels and adds the right ones so they get routed correctly." tabindex="0">i</span><button class="rcpt" type="button" data-rc="todoist-unlabeled-classification" title="What this lane did">1 item ▸</button></td><td><span class="cat p">Personal</span></td><td class="agent">automation_engineer</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G5" hidden data-fn="todoist duplicate closeout" data-ft="personal" data-fa="automation_engineer" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Todoist duplicate closeout<span class="info" data-tip="Finds tasks that say the same thing twice and closes the extra copy. Closing can be undone; nothing is ever deleted." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">automation_engineer</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G5" hidden data-fn="todoist today and overdue" data-ft="personal" data-fa="automation_engineer" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Todoist today and overdue<span class="info" data-tip="Lists what is due today or overdue, so the day starts with a clear picture." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">automation_engineer</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="grp" data-grp="G6" data-open="0"><td class="gn"><span class="chev">›</span>Research &amp; briefings (3)<span class="info" data-tip="The reading-and-summarizing lanes: the morning briefing, meeting recordings and documents, and industry analyst news." tabindex="0">i</span></td><td><span class="cat p">Personal</span><span class="cat a">Alteryx</span></td><td class="agent">—</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G6" hidden data-fn="ai morning briefing" data-ft="personal" data-fa="project_coordinator" data-fm="joshua’s macbook pro" data-fs="nd"><td class="ln">AI morning briefing<span class="info" data-tip="Builds the morning briefing page — weather, calendar, tasks, and news — and publishes it so it can be read from any device." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">project_coordinator</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill nd">Not due</span></td></tr>
+<tr class="lane" data-parent-grp="G6" hidden data-fn="research and documents — personal" data-ft="personal" data-fa="research_analyst" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Research and documents — personal<span class="info" data-tip="Reads new meeting recordings and documents, then files summaries and any follow-ups into the vault and the task list." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">research_analyst</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G6" hidden data-fn="industry analyst intelligence review" data-ft="alteryx" data-fa="research_analyst" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Industry analyst intelligence review<span class="info" data-tip="Once a week, reads reports from industry analysts like Gartner and Forrester and updates the analyst guide when something really changed." tabindex="0">i</span></td><td><span class="cat a">Alteryx</span></td><td class="agent">research_analyst</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="grp" data-grp="G7" data-open="0"><td class="gn"><span class="chev">›</span>Org engine (5)<span class="info" data-tip="The machinery that keeps this whole system running: due recurring routines, task-label checks, reconciling what the AI said it did, the Cowork queue, and saving every change to Git." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">automation_engineer</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G7" hidden data-fn="ai routines — due recurring work" data-ft="personal" data-fa="automation_engineer" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">AI routines — due recurring work<span class="info" data-tip="Finds the org&#x27;s own recurring AI routines that are due and runs each one by its written procedure." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">automation_engineer</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G7" hidden data-fn="ai task label consistency" data-ft="personal" data-fa="automation_engineer" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">AI task label consistency<span class="info" data-tip="Checks tasks labeled AI to make sure their labels still make sense, and fixes the ones that don&#x27;t." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">automation_engineer</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G7" hidden data-fn="ai work reconciliation" data-ft="personal" data-fa="automation_engineer" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">AI work reconciliation<span class="info" data-tip="Compares what the AI said it did with what actually happened in the task list, and flags anything stalled." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">automation_engineer</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G7" hidden data-fn="cowork queue" data-ft="personal" data-fa="automation_engineer" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Cowork queue<span class="info" data-tip="Checks the queue of interactive AI missions and starts the ones that are due." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">automation_engineer</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G7" hidden data-fn="git sync" data-ft="personal" data-fa="automation_engineer" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Git sync<span class="info" data-tip="Saves all of the day&#x27;s changes into the Git history and syncs with GitHub, so no work is ever lost." tabindex="0">i</span><button class="rcpt" type="button" data-rc="git-sync" title="What this lane did">1 item ▸</button></td><td><span class="cat p">Personal</span></td><td class="agent">automation_engineer</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="grp" data-grp="G8" data-open="0"><td class="gn"><span class="chev">›</span>Other lanes (4)<span class="info" data-tip="Lanes that have not been filed into a named group yet. They run and report exactly like every other lane." tabindex="0">i</span></td><td><span class="cat p">Personal</span><span class="cat a">Alteryx</span></td><td class="agent">—</td><td class="machine">—</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G8" hidden data-fn="daily finance review (simplifi)" data-ft="personal" data-fa="financial_analyst" data-fm="joshua’s macbook pro" data-fs="nd"><td class="ln">Daily finance review (Simplifi)<span class="info" data-tip="One of the org&#x27;s scheduled lanes. A plain-language note for it has not been written yet." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">financial_analyst</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill nd">Not due</span></td></tr>
+<tr class="lane" data-parent-grp="G8" hidden data-fn="browser cleanup" data-ft="personal" data-fa="automation_engineer" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Browser cleanup<span class="info" data-tip="One of the org&#x27;s scheduled lanes. A plain-language note for it has not been written yet." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">automation_engineer</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G8" hidden data-fn="browser cleanup — alteryx" data-ft="alteryx" data-fa="automation_engineer" data-fm="amb-2359yn" data-fs="ok"><td class="ln">Browser cleanup — Alteryx<span class="info" data-tip="One of the org&#x27;s scheduled lanes. A plain-language note for it has not been written yet." tabindex="0">i</span></td><td><span class="cat a">Alteryx</span></td><td class="agent">automation_engineer</td><td class="machine">AMB-2359YN</td><td><span class="pill ok">Successful</span></td></tr>
+<tr class="lane" data-parent-grp="G8" hidden data-fn="todoist overflow project readiness" data-ft="personal" data-fa="automation_engineer" data-fm="joshua’s macbook pro" data-fs="ok"><td class="ln">Todoist overflow project readiness<span class="info" data-tip="One of the org&#x27;s scheduled lanes. A plain-language note for it has not been written yet." tabindex="0">i</span></td><td><span class="cat p">Personal</span></td><td class="agent">automation_engineer</td><td class="machine">Joshua’s MacBook Pro</td><td><span class="pill ok">Successful</span></td></tr>
+</tbody></table></div>
+<div class="legend">
+<span><span class="chev">›</span> Click a group for its lanes, a lane for its work items</span>
+<span>Filter under any header — matching rows open up; clear the filters to fold the table back</span>
+<span><span class="info" style="margin-left:0">i</span> Hover for what a lane does</span>
+<span><span class="dot" style="background:#1f7aef"></span>Successful</span>
+<span><span class="dot" style="background:#53627a"></span>Not due</span>
+<span><span class="dot" style="background:#6c4bf5"></span>Not Completed</span>
+<span><span class="dot" style="background:#a3154c"></span>Failed</span>
+<span>Agent <b>runner</b> = deterministic lane, no agent involved</span>
+<span>All times Eastern (ET)</span></div>
+</div><div id="tip" role="tooltip"></div>
+<div id="pnl-bg"></div><aside id="pnl" role="dialog" aria-modal="true" aria-labelledby="pnl-title">
+<div class="pnl-h"><h2 id="pnl-title"></h2><button id="pnl-close" class="pnl-x" type="button" aria-label="Close">×</button></div>
+<div id="pnl-meta" class="pnl-m"></div><div id="pnl-body" class="pnl-b"></div></aside>
+<script id="rc" type="application/json">{"git-sync": {"lane": "Git sync", "status": "ok", "label": "Successful", "start": "23:08:40", "end": "23:08:45", "machine": "Joshua’s MacBook Pro", "page": "run-2026-08-17T03-46-47Z-git-sync.html", "receipt": [{"at": "23:08:44", "kind": "Vault", "item": "the vault (agentic_org)", "action": "changes committed and pushed"}]}, "todoist-inbox-routing": {"lane": "Todoist inbox routing", "status": "ok", "label": "Successful", "start": "23:09:03", "end": "23:09:26", "machine": "Joshua’s MacBook Pro", "page": "run-2026-08-17T03-46-47Z-todoist-inbox-routing.html", "receipt": [{"at": "23:09:10", "kind": "Task", "item": "Share Snowflake partnership slide deck via Accelerate, send link to Mar…", "action": "moved to Automate Alteryx — Overflow 2"}, {"at": "23:09:12", "kind": "Task", "item": "Collect Snowflake-heavy/target accounts and send to Macaulay Parker (al…", "action": "moved to Automate Alteryx — Overflow 2"}, {"at": "23:09:14", "kind": "Task", "item": "Coordinate Sydney trip Snowflake meetings (Westpac AE) and confirm avai…", "action": "moved to Automate Alteryx — Overflow 2"}, {"at": "23:09:16", "kind": "Task", "item": "Produce Snowflake-stack demo video using Cortex AI and Snowflake data", "action": "moved to Automate Alteryx — Overflow 2"}, {"at": "23:09:18", "kind": "Task", "item": "Update architecture slides to reference Snowflake Cortex explicitly", "action": "moved to Automate Alteryx — Overflow 2"}, {"at": "23:09:20", "kind": "Task", "item": "Call Egencia to finalize Phoenix Delta flights with airline credit", "action": "moved to Automate Alteryx — Overflow 2"}]}, "todoist-unlabeled-classification": {"lane": "Todoist unlabeled classification", "status": "ok", "label": "Successful", "start": "23:09:29", "end": "23:09:31", "machine": "Joshua’s MacBook Pro", "page": "run-2026-08-17T03-46-47Z-todoist-unlabeled-classification.html", "receipt": [{"at": "23:09:31", "kind": "Task", "item": "[072026_AlteryxSeller_PitchDeck](https://docs.google.com/presentation/d…", "action": "labeled Alteryx"}]}}</script>
+<script>
+(function(){var t=document.getElementById('t');if(!t)return;
+var filtering=false;
+function laneSet(r,open){var k=r.getAttribute('data-lane');if(!k)return;
+var s=t.querySelectorAll('tr[data-parent="'+k+'"]');
+for(var i=0;i<s.length;i++)s[i].hidden=!open;
+r.setAttribute('data-open',open?'1':'0')}
+function grpSet(r,open){var g=r.getAttribute('data-grp'),i;
+var l=t.querySelectorAll('tr.lane[data-parent-grp="'+g+'"]');
+for(i=0;i<l.length;i++){l[i].hidden=!open;
+if(!open&&l[i].hasAttribute('data-lane'))laneSet(l[i],false)}
+if(!open){var s=t.querySelectorAll('tr.item[data-parent-grp="'+g+'"]');
+for(i=0;i<s.length;i++)s[i].hidden=true}
+r.setAttribute('data-open',open?'1':'0')}
+t.addEventListener('click',function(e){
+if(filtering)return;
+if(e.target.closest('.info'))return;
+var r=e.target.closest('tr[data-grp]');
+if(r){grpSet(r,r.getAttribute('data-open')!=='1');return}
+r=e.target.closest('tr[data-lane]');
+if(r)laneSet(r,r.getAttribute('data-open')!=='1')});
+var x=document.getElementById('xall');
+if(x)x.addEventListener('click',function(){
+if(filtering)return;
+var open=x.getAttribute('data-open')!=='1',i;
+var gs=t.querySelectorAll('tr[data-grp]');
+for(i=0;i<gs.length;i++)grpSet(gs[i],open);
+var ls=t.querySelectorAll('tr[data-lane]');
+for(i=0;i<ls.length;i++)laneSet(ls[i],open);
+x.setAttribute('data-open',open?'1':'0');
+x.textContent=open?'Collapse all':'Expand all'});
+var fr=document.getElementById('fr');
+if(fr){
+var ctl=fr.querySelectorAll('input,select');
+function match(r){
+for(var i=0;i<ctl.length;i++){var v=ctl[i].value.toLowerCase();if(!v)continue;
+var d=(r.getAttribute('data-f'+ctl[i].getAttribute('data-col'))||'').toLowerCase();
+if(d.indexOf(v)===-1)return false}
+return true}
+function restore(){filtering=false;var i;
+var gs=t.querySelectorAll('tr[data-grp]');
+for(i=0;i<gs.length;i++){gs[i].hidden=false;grpSet(gs[i],false)}
+if(x){x.setAttribute('data-open','0');x.textContent='Expand all'}}
+function apply(){
+var on=false,i,j;
+for(i=0;i<ctl.length;i++)if(ctl[i].value)on=true;
+if(!on){restore();return}
+filtering=true;
+var lanes=t.querySelectorAll('tr.lane');
+for(i=0;i<lanes.length;i++){
+var lv=match(lanes[i]),anyItem=false,k=lanes[i].getAttribute('data-lane');
+if(k){var its=t.querySelectorAll('tr.item[data-parent="'+k+'"]');
+for(j=0;j<its.length;j++){var iv=match(its[j]);its[j].hidden=!iv;if(iv)anyItem=true}}
+lanes[i].hidden=!(lv||anyItem);
+lanes[i].setAttribute('data-open',anyItem?'1':'0')}
+var gs=t.querySelectorAll('tr[data-grp]');
+for(i=0;i<gs.length;i++){var g=gs[i].getAttribute('data-grp'),vis=false;
+var ls=t.querySelectorAll('tr.lane[data-parent-grp="'+g+'"]');
+for(j=0;j<ls.length;j++)if(!ls[j].hidden)vis=true;
+gs[i].hidden=!vis;gs[i].setAttribute('data-open',vis?'1':'0')}}
+fr.addEventListener('input',apply);
+fr.addEventListener('change',apply)}
+var tip=document.getElementById('tip');
+function show(el){if(!tip)return;tip.textContent=el.getAttribute('data-tip')||'';
+tip.style.display='block';var b=el.getBoundingClientRect();
+var l=Math.max(8,Math.min(b.left,window.innerWidth-tip.offsetWidth-12));
+var y=b.bottom+8;
+if(y+tip.offsetHeight>window.innerHeight-8)y=b.top-tip.offsetHeight-8;
+tip.style.left=l+'px';tip.style.top=y+'px'}
+function hide(){if(tip)tip.style.display='none'}
+document.addEventListener('mouseover',function(e){
+var el=e.target.closest('.info');if(el)show(el);else hide()});
+document.addEventListener('click',function(e){
+var el=e.target.closest('.info');if(el)show(el)});
+window.addEventListener('scroll',hide,true);
+var rcEl=document.getElementById('rc'),pnl=document.getElementById('pnl'),bg=document.getElementById('pnl-bg');
+var RC={};try{RC=JSON.parse(rcEl?rcEl.textContent:'{}')||{}}catch(e){RC={}}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function lines(rs){if(!rs||!rs.length)return '<div class="rl-none">Nothing was changed by this lane in this run.</div>';
+var h='<ol class="rl-list">';for(var i=0;i<rs.length;i++){var r=rs[i];
+h+='<li class="rl"><span class="rt">'+esc(r.at)+'</span><span><span class="rk">'+esc(r.kind)+'</span><span class="ri">'+esc(r.item)+'</span></span><span class="ra">'+esc(r.action)+'</span></li>'}
+return h+'</ol>'}
+function openPanel(slug){var d=RC[slug];if(!d||!pnl)return;
+document.getElementById('pnl-title').textContent=d.lane;
+document.getElementById('pnl-meta').innerHTML='<span class="pill '+esc(d.status)+'">'+esc(d.label)+'</span>'+
+'<span class="t"><b>Started</b> '+esc(d.start)+' · <b>Ended</b> '+esc(d.end)+'</span><span>'+esc(d.machine)+'</span>'+
+'<a class="pnl-open" href="'+esc(d.page)+'">Open full page ↗</a>';
+document.getElementById('pnl-body').innerHTML=lines(d.receipt);
+pnl.classList.add('open');bg.classList.add('open');
+if(history.replaceState)history.replaceState(null,'','#'+slug);
+document.getElementById('pnl-close').focus()}
+function closePanel(){if(!pnl)return;pnl.classList.remove('open');bg.classList.remove('open');
+if(history.replaceState)history.replaceState(null,'',location.pathname+location.search)}
+document.addEventListener('click',function(e){var c=e.target.closest('.rcpt');
+if(c){e.stopPropagation();openPanel(c.getAttribute('data-rc'));return}
+if(e.target.closest('#pnl-close')||e.target===bg)closePanel()},true);
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closePanel()});
+if(location.hash&&RC[location.hash.slice(1)])openPanel(location.hash.slice(1));
+/* Previous / next run. The next run does not exist when a page is published, so the
+   arrows read the run list from the site's own index at view time — the same list
+   the "All runs" page shows, newest first — and point at this run's neighbours. If
+   the index cannot be read (offline, first build), the arrows stay dim. */
+var cur=document.body.getAttribute('data-run'),pv=document.getElementById('rprev'),nx=document.getElementById('rnext');
+if(cur&&pv&&nx&&window.fetch){fetch('./index.html',{cache:'no-store'}).then(function(r){return r.text()}).then(function(t){
+var ids=[],re=/href="run-([0-9TZ-]+)\.html"/g,m;while((m=re.exec(t)))ids.push(m[1]);
+var i=ids.indexOf(cur);if(i<0)return;
+if(i+1<ids.length){pv.href='run-'+ids[i+1]+'.html';pv.classList.remove('off')}
+if(i>0){nx.href='run-'+ids[i-1]+'.html';nx.classList.remove('off')}
+}).catch(function(){})}
+document.addEventListener('keydown',function(e){if(e.target&&/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;
+if(e.key==='ArrowLeft'&&pv&&!pv.classList.contains('off'))location.href=pv.href;
+if(e.key==='ArrowRight'&&nx&&!nx.classList.contains('off'))location.href=nx.href});
+})();
+</script></body></html>
